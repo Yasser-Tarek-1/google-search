@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-icon {
+  filter: invert(91%) sepia(71%) saturate(73%) hue-rotate(175deg)
+    brightness(94%) contrast(97%);
+}
+
+.sun-icon {
+  filter: invert(83%) sepia(27%) saturate(5011%) hue-rotate(354deg)
+    brightness(106%) contrast(102%);
+}
+.moon-icon {
+  filter: invert(51%) sepia(0%) saturate(1031%) hue-rotate(160deg)
+    brightness(86%) contrast(80%);
+}
