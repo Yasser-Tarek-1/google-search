@@ -4,10 +4,10 @@ import axios from "axios";
 
 export const resultApi = createAsyncThunk(
   "results/resultApi",
-  async ({ type, value }, { rejectWithValue, getState }) => {
+  async ({ value, type }, { rejectWithValue, getState }) => {
     // const { value } = getState().input;
     try {
-      const option = options(type, value);
+      const option = options(value, type);
       const response = await axios.request(option);
       return response.data;
     } catch (error) {

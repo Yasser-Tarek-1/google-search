@@ -1,17 +1,18 @@
-const baseURL = "https://google-search-2.p.rapidapi.com";
-const KEY = process.env.REACT_APP_RAPID_API_Key;
+// `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CS_KEY}&imgSize=large&searchType=image&q=salah`
+const baseURL = `https://www.googleapis.com/customsearch/v1`;
 
-export const options = (type, query) => {
+const API_KEY = process.env.REACT_APP_API_KEY;
+const CS_KEY = process.env.REACT_APP_CS_KEY;
+
+export const options = (query, type) => {
   const options = {
     method: "GET",
-    url: `${baseURL}/${type}`,
+    url: baseURL,
     params: {
-      query,
-      num: "40",
-    },
-    headers: {
-      "X-RapidAPI-Key": KEY,
-      "X-RapidAPI-Host": "google-search-2.p.rapidapi.com",
+      q: query,
+      key: API_KEY,
+      cx: CS_KEY,
+      searchType: type,
     },
   };
   return options;

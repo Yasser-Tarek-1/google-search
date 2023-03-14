@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const routes = ["/", "images", "news", "videos"];
+const routes = ["search", "images"];
 
 const NavBar = () => {
   return (
@@ -18,7 +18,7 @@ const NavBar = () => {
                  ${isActive ? "before:w-full" : "hover:before:w-full"}
                  `}
               >
-                {route === "/" ? "All" : route}
+                {route === "search" ? "All" : route}
               </div>
             )}
           </NavLink>
