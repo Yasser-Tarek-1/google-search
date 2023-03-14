@@ -1,61 +1,29 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+const routes = ["/", "images", "news", "videos"];
+
 const NavBar = () => {
   return (
-    <div className="flex items-center justify-center gap-4">
-      <NavLink to="/">
-        {({ isActive }) => (
-          <div
-            className={
-              isActive
-                ? "border-b border-cyan-400"
-                : "hover:border-b border-cyan-400"
-            }
-          >
-            Result
-          </div>
-        )}
-      </NavLink>
-      <NavLink to="/images">
-        {({ isActive }) => (
-          <div
-            className={
-              isActive
-                ? "border-b border-cyan-400"
-                : "hover:border-b border-cyan-400 transition-all"
-            }
-          >
-            Images
-          </div>
-        )}
-      </NavLink>
-      <NavLink to="/news">
-        {({ isActive }) => (
-          <div
-            className={
-              isActive
-                ? "border-b border-cyan-400"
-                : "hover:border-b border-cyan-400 transition-all"
-            }
-          >
-            News
-          </div>
-        )}
-      </NavLink>
-      <NavLink to="/videos">
-        {({ isActive }) => (
-          <div
-            className={
-              isActive
-                ? "border-b border-cyan-400"
-                : "hover:border-b border-cyan-400 transition-all"
-            }
-          >
-            Videos
-          </div>
-        )}
-      </NavLink>
+    <div className="flex items-center justify-center gap-4 pt-4 sm:pt-1">
+      {routes.map((route, idx) => {
+        return (
+          <NavLink to={route} key={idx}>
+            {({ isActive }) => (
+              <div
+                className={` 
+                relative dark:border-blue-400 capitalize border-blue-600 pb-[2px]
+                before:content-[""] before:absolute before:bottom-0 before:left-0
+                 before:h-[2px] before:bg-blue-600 before:dark:bg-blue-400
+                 ${isActive ? "before:w-full" : "hover:before:w-full"}
+                 `}
+              >
+                {route === "/" ? "All" : route}
+              </div>
+            )}
+          </NavLink>
+        );
+      })}
     </div>
   );
 };

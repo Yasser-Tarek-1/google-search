@@ -1,20 +1,45 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import searchIcon from "../assets/search.svg";
+import closeIcon from "../assets/close.svg";
+import { updateSearchTerm } from "../store/inputSlice";
+import { useDispatch } from "react-redux";
+import { useDebounce } from "use-debounce";
 
 const Search = () => {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
+
+  useEffect(() => {
+    dispatch(updateSearchTerm(debouncedSearchTerm));
+  }, [debouncedSearchTerm, dispatch]);
 
   return (
-    <div className="bg-[#737373] dark:bg-white px-3 mx-4 sm:px-5 py-1 sm:py-2 rounded-full flex items-center">
+    <div className="sm:w-80 bg-white dark:bg-gray-200 shadow-sm px-3 mx-4 sm:px-5 py-1 sm:py-2 rounded-full flex items-center">
       <input
         type="text"
-        className="w-full outline-none bg-transparent text-white dark:text-gray-700"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        className="w-full outline-none bg-transparent text-black dark:text-gray-700 "
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search..."
       />
-      <button type="button">
-        <img src={searchIcon} alt="searchIcon" className="w-8 " />
-      </button>
+      {searchTerm ? (
+        <button type="button" className="w-8" onClick={() => setSearchTerm("")}>
+          <img
+            src={closeIcon}
+            alt="searchIcon"
+            className="w-full blue dark:blue-dark cursor-pointer"
+          />
+        </button>
+      ) : (
+        <button type="button" className="w-8">
+          <img
+            src={searchIcon}
+            alt="searchIcon"
+            className="w-full blue dark:blue-dark"
+          />
+        </button>
+      )}
     </div>
   );
 };

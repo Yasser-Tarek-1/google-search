@@ -1,8 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Result from "./pages/Result";
-import Images from "./pages/Images";
-import News from "./pages/News";
-import Videos from "./pages/Videos";
+import Result from "./components/Result";
 import Root from "./Root";
 
 export const router = createBrowserRouter([
@@ -11,20 +8,8 @@ export const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        index: true,
+        path: ":pageName",
         element: <Result />,
-      },
-      {
-        path: "images",
-        element: <Images />,
-      },
-      {
-        path: "news",
-        element: <News />,
-      },
-      {
-        path: "videos",
-        element: <Videos />,
       },
     ],
   },

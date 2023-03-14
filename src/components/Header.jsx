@@ -8,11 +8,15 @@ import NavBar from "./NavBar";
 
 const Header = ({ darkMode, onSetDarkMode }) => {
   return (
-    <div className="w-full relative border-b border-gray-200 dark:border-gray-700 ">
+    <div className="w-full pt-1 relative border-b-[2px] border-gray-200 dark:border-gray-700 ">
       <div className="flex p-2 sm:p-5 justify-between items-center ">
         <div className="w-24">
           <Link to={"/"}>
-            <img src={googleIcon} alt="googleIcon" className="w-full" />
+            <img
+              src={googleIcon}
+              alt="googleIcon"
+              className="w-full blue dark:blue-dark"
+            />
           </Link>
         </div>
         <Search />
@@ -25,7 +29,7 @@ const Header = ({ darkMode, onSetDarkMode }) => {
             {darkMode ? (
               <img src={sunIcon} alt="Light" className="w-6 sun-icon" />
             ) : (
-              <img src={moonIcon} alt="Dark" className="w-6 moon-icon" />
+              <img src={moonIcon} alt="Dark" className="w-6 blue" />
             )}
           </button>
         </div>

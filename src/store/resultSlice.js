@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { options } from "../service";
 import axios from "axios";
 
-export const resultResult = createAsyncThunk(
-  "result/resultResult",
-  async (search, { rejectWithValue }) => {
+export const resultApi = createAsyncThunk(
+  "results/resultApi",
+  async ({ type, value }, { rejectWithValue, getState }) => {
+    // const { value } = getState().input;
     try {
-      const option = options("organicResults", search);
+      const option = options(type, value);
       const response = await axios.request(option);
-      return response.data.organic_results;
+      return response.data;
     } catch (error) {
       throw rejectWithValue(error.message);
     }
@@ -16,25 +17,25 @@ export const resultResult = createAsyncThunk(
 );
 
 const initialState = {
-  result: [],
+  results: {},
   error: null,
   isLoading: false,
 };
 
 export const resultSlice = createSlice({
-  name: "result",
+  name: "results",
   initialState,
   reducers: {},
   extraReducers: {
-    [resultResult.pending]: (state, action) => {
+    [resultApi.pending]: (state) => {
       state.error = null;
       state.isLoading = true;
     },
-    [resultResult.fulfilled]: (state, action) => {
-      state.result = action.payload;
+    [resultApi.fulfilled]: (state, action) => {
+      state.results = action.payload;
       state.isLoading = false;
     },
-    [resultResult.rejected]: (state, action) => {
+    [resultApi.rejected]: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
