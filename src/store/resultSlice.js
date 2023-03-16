@@ -9,6 +9,9 @@ export const resultApi = createAsyncThunk(
     try {
       const option = options(value, type);
       const response = await axios.request(option);
+
+      console.log(response.data);
+
       return response.data;
     } catch (error) {
       throw rejectWithValue(error.message);

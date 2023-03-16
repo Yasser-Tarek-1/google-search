@@ -13,6 +13,7 @@ export const options = (query, type) => {
       key: API_KEY,
       cx: CS_KEY,
       searchType: type,
+      imgSize: "large",
     },
   };
   return options;

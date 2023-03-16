@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: "javascript",
+  value: "",
 };
 
 export const inputSlice = createSlice({
